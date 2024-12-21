@@ -17,24 +17,24 @@ model Article {
   title       String
   description String
   body        String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now())
-  tagList     Tag[]
-  author      User      @relation("UserArticles", fields: [authorId], onDelete: Cascade, references: [id])
-  authorId    Int
-  favoritedBy User[]    @relation("UserFavorites")
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @default(now())
+  tag_list     Tag[]
+  author      User      @relation("UserArticles", fields: [author_id], onDelete: Cascade, references: [id])
+  author_id    Int
+  favorited_by User[]    @relation("UserFavorites")
   comments    Comment[]
 }
 
 model Comment {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
   body      String
-  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  articleId Int
-  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId  Int
+  article   Article  @relation(fields: [article_id], references: [id], onDelete: Cascade)
+  article_id Int
+  author    User     @relation(fields: [author_id], references: [id], onDelete: Cascade)
+  author_id  Int
 }
 
 model Tag {
@@ -52,7 +52,7 @@ model User {
   bio        String?
   articles   Article[] @relation("UserArticles")
   favorites  Article[] @relation("UserFavorites")
-  followedBy User[]    @relation("UserFollows")
+  followed_by User[]    @relation("UserFollows")
   following  User[]    @relation("UserFollows")
   comments   Comment[]
   demo       Boolean   @default(false)
